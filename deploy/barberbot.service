@@ -1,0 +1,17 @@
+[Unit]
+Description=Barbershop Telegram bots
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=barber
+WorkingDirectory=/opt/barbershop-bot
+ExecStart=/opt/barbershop-bot/.venv/bin/python -m app.main
+Restart=always
+RestartSec=5
+# Safety net: restart if it ever grows past 300 MB
+MemoryMax=300M
+
+[Install]
+WantedBy=multi-user.target
